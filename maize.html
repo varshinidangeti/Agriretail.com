@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Maize Insights - AgriRetail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 30px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .section {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .price-variations {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .price-variation {
+            background-color: #e7f3fe;
+            border: 1px solid #b3d7ff;
+            border-radius: 5px;
+            padding: 10px;
+            width: 30%;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #priceChart {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    Maize Insights
+</header>
+
+<div class="container">
+
+    <!-- Futuristic Demand Section -->
+    <div class="section">
+        <h2>Futuristic Demand for Maize</h2>
+        <p>The demand for maize is projected to grow due to various factors, including its versatility in food products and industrial uses. Key trends include:</p>
+        <ul>
+            <li>Increased usage in animal feed and biofuel production.</li>
+            <li>Growing consumer interest in maize-based snacks.</li>
+            <li>Expansion in export markets as global demand rises.</li>
+        </ul>
+    </div>
+
+    <!-- Price Variations Section -->
+    <div class="section">
+        <h2>Price Variations in the Market</h2>
+        <p>Price variations for maize can fluctuate based on seasonal factors, supply chain challenges, and market demand. Below are the current price variations:</p>
+        <div class="price-variations">
+            <div class="price-variation">
+                <h3>Current Price</h3>
+                <p>₹1,500 per quintal</p>
+            </div>
+            <div class="price-variation">
+                <h3>Price Last Month</h3>
+                <p>₹1,450 per quintal</p>
+            </div>
+            <div class="price-variation">
+                <h3>Projected Price Next Month</h3>
+                <p>₹1,550 per quintal</p>
+            </div>
+        </div>
+
+        <!-- Price Chart -->
+        <div id="priceChart">
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2024 AgriRetail.com
+</footer>
+
+<script>
+    const ctx = document.getElementById('chart').getContext('2d');
+    const priceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Price (₹ per quintal)',
+                data: [1450, 1480, 1500, 1520, 1510, 1530, 1550],
+                borderColor: '#4CAF50',
+                backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Price (₹)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Months'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

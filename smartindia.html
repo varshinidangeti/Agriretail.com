@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reliance mart Crop Request & Account Details</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .main-content {
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin-bottom: 30px;
+        }
+        h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .language-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .language-selector {
+            width: 150px;
+            margin: 0 auto;
+        }
+        /* Table content styling */
+        .table-container {
+            margin-top: 30px;
+            overflow-y: auto;
+            max-height: 250px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            display: none; /* Initially hidden */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-content">
+    <!-- Language Selector -->
+    <div class="language-container">
+        <label for="language-selector">Select Language:</label>
+        <select id="language-selector" class="form-select language-selector">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="te">Telugu</option>
+        </select>
+    </div>
+
+    <!-- D-Mart Crop Request Form -->
+    <div class="container mt-5">
+        <h2 id="crop-form-title">Reliance mart Crop Request Form</h2>
+        <MARQUEE>   <p>Mention your expected price for the price negotiation and further convenience open  Retailers Connect .!</p></MARQUEE>
+        <form id="crop-form" class="row g-3">
+            
+
+            <label for="crop" class="form-label" data-translate-key="crop-type">Select Crop Type</label>
+            <select id="crop" name="crop" onchange="updateTable()">
+                <option value="paddy">Paddy</option>
+                <option value="tomato">Tomato</option>
+                <option value="wheat">Wheat</option>
+                <option value="millets">Millets</option>
+                <option value="maize">Maize</option>
+                <option value="sugar">Sugar</option>
+            </select>
+
+            <label for="quantity" class="form-label" data-translate-key="quantity">Select Quantity</label>
+            <input type="number" id="quantity" name="quantity" required>
+            <p>minimum bags must be 50 and maximum bags is 350</p>
+            <label for="quantity" class="form-label" data-translate-key="price">Expected Price</label>
+            <input type="number" id="quantity" name="quantity" required>
+        </form>
+    </div>
+
+    <!-- Table of Content -->
+    <div class="container table-container" id="table-container">
+        <h3>Product Information</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity Required (bags)</th>
+                    <th>Min Buying Price (₹)</th>
+                    <th>Time Period (Days)</th>
+                    <th>Deadline</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Table rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Account Details Form -->
+    <div class="container">
+        <h2 id="account-form-title">Account Details</h2>
+        <form id="account-form">
+            <label for="full-name" data-translate-key="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" required>
+
+            <label for="adhar-number" data-translate-key="adhar-number">Aadhar Number:</label>
+            <input type="text" id="adhar-number" name="adhar-number" required>
+
+            <label for="contact-number" data-translate-key="contact-number">Contact Number:</label>
+            <input type="tel" id="contact-number" name="contact-number" required>
+
+            <label for="account-location" data-translate-key="account-location">Location:</label>
+            <input type="text" id="account-location" name="account-location" required>
+
+            <label for="ownership-status" data-translate-key="ownership-status">Ownership Status:</label>
+            <input type="text" id="ownership-status" name="ownership-status" required>
+
+            <label for="soil-type" data-translate-key="soil-type">Soil Type / Number of Acres:</label>
+            <input type="text" id="soil-type" name="soil-type" required>
+
+            <label for="experience" data-translate-key="experience">Experience:</label>
+            <input type="number" id="experience" name="experience" required>
+
+            <label for="bank-ifsc" data-translate-key="bank-ifsc">Bank IFSC Code:</label>
+            <input type="text" id="bank-ifsc" name="bank-ifsc" required>
+
+            <label for="crop-history" data-translate-key="crop-history">Crop History:</label>
+            <input type="text" id="crop-history" name="crop-history" required>
+        </form>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="container">
+        <button onclick="generatePDF()" data-translate-key="submit-request">Submit Request</button>
+    </div>
+</div>
+
+<!-- Include jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.6.0/jspdf.umd.min.js"></script>
+
+<script>
+    let maxQuantity = 0;  // Global variable to store the maximum quantity for the selected crop
+
+    const translations = {
+        en: {
+            'crop-form-title': 'Big Basket Crop Request Form',
+            'account-form-title': 'Account Details',
+            'location': 'Location',
+            'crop-type': 'Select Crop Type',
+            'quantity': 'Select Quantity',
+            'full-name': 'Full Name:',
+            'adhar-number': 'Aadhar Number:',
+            'contact-number': 'Contact Number:',
+            'account-location': 'Location:',
+            'ownership-status': 'Ownership Status:',
+            'soil-type': 'Soil Type / Number of Acres:',
+            'experience': 'Experience:',
+            'bank-ifsc': 'Bank IFSC Code:',
+            'crop-history': 'Crop History:',
+            'submit-request': 'Submit Request'
+        },
+        hi: {
+            'crop-form-title': 'बिग बास्केट फसल अनुरोध फॉर्म',
+            'account-form-title': 'खाता विवरण',
+            'location': 'स्थान',
+            'crop-type': 'फसल का प्रकार चुनें',
+            'quantity': 'मात्रा चुनें',
+            'full-name': 'पूरा नाम:',
+            'adhar-number': 'आधार नंबर:',
+            'contact-number': 'संपर्क नंबर:',
+            'account-location': 'स्थान:',
+            'ownership-status': 'स्वामित्व की स्थिति:',
+            'soil-type': 'मृदा प्रकार / एकड़ की संख्या:',
+            'experience': 'अनुभव:',
+            'bank-ifsc': 'बैंक IFSC कोड:',
+            'crop-history': 'फसल का इतिहास:',
+            'submit-request': 'अनुरोध सबमिट करें'
+        },
+        te: {
+            'crop-form-title': 'బిగ్ బాస్కెట్ పంట అభ్యర్థన ఫారం',
+            'account-form-title': 'ఖాతా వివరాలు',
+            'location': 'స్థానం',
+            'crop-type': 'పంట రకం ఎంచుకోండి',
+            'quantity': 'మొత్తం ఎంచుకోండి',
+            'full-name': 'పూర్తి పేరు:',
+            'adhar-number': 'ఆధార్ నెంబర్:',
+            'contact-number': 'సంప్రదింపు నెంబర్:',
+            'account-location': 'స్థానం:',
+            'ownership-status': 'స్వామ్య స్థితి:',
+            'soil-type': 'మట్టి రకం / ఎకరాల సంఖ్య:',
+            'experience': 'అనుభవం:',
+            'bank-ifsc': 'బ్యాంకు IFSC కోడ్:',
+            'crop-history': 'పంట చరిత్ర:',
+            'submit-request': 'అభ్యర్థనను సమర్పించండి'
+        }
+    };
+
+    // Translation Function
+    function translatePage(language) {
+        const elementsToTranslate = document.querySelectorAll("[data-translate-key]");
+        elementsToTranslate.forEach((element) => {
+            const key = element.getAttribute("data-translate-key");
+            element.textContent = translations[language][key];
+        });
+    }
+
+    // Update Language Selection
+    document.getElementById('language-selector').addEventListener('change', function () {
+        const selectedLanguage = this.value;
+        translatePage(selectedLanguage);
+    });
+
+    // Crop-specific data to be displayed in the table
+    const cropData = {
+        paddy: [
+            { name: 'Paddy', quantity: '100', price: '2000', days: '120', deadline: '30th June' }
+        ],
+        tomato: [
+            { name: 'Tomato', quantity: '50', price: '1500', days: '90', deadline: '15th April' }
+        ],
+        wheat: [
+            { name: 'Wheat', quantity: '120', price: '1800', days: '100', deadline: '10th July' }
+        ],
+        millets: [
+            { name: 'Millets', quantity: '60', price: '1700', days: '110', deadline: '5th August' }
+        ],
+        maize: [
+            { name: 'Maize', quantity: '90', price: '1600', days: '95', deadline: '20th September' }
+        ],
+        sugar: [
+            { name: 'Sugar', quantity: '200', price: '2200', days: '150', deadline: '25th October' }
+        ]
+    };
+
+    // Function to update table based on crop selection
+    function updateTable() {
+        const selectedCrop = document.getElementById('crop').value;
+        const tableBody = document.getElementById('table-body');
+        const tableContainer = document.getElementById('table-container');
+
+        // Clear previous table content
+        tableBody.innerHTML = '';
+
+        // Get data for selected crop
+        const data = cropData[selectedCrop];
+
+        // Update max quantity for validation
+        maxQuantity = parseInt(data[0].quantity);
+
+        // Create new rows based on data
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.name}</td>
+                <td>${row.quantity}</td>
+                <td>${row.price}</td>
+                <td>${row.days}</td>
+                <td>${row.deadline}</td>
+            `;
+            tableBody.appendChild(tr);
+        });
+
+        // Display the table container
+        tableContainer.style.display = 'block';
+
+        // Clear the quantity input field
+        document.getElementById('quantity').value = '';
+    }
+
+    // Function to validate quantity
+    document.getElementById('quantity').addEventListener('input', function () {
+        const quantityInput = parseInt(this.value);
+
+        if (quantityInput > maxQuantity) {
+            alert(`The quantity should not exceed the required quantity of ${maxQuantity} bags.`);
+            this.value = maxQuantity;  // Set the value back to the max quantity if exceeded
+        }
+    });
+
+    // Function to generate PDF
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.text("Reliance mart Crop Request Form", 10, 10);
+        doc.save("request.pdf");
+    }
+</script>
+
+</body>
+</html>

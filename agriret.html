@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>AgriTrust - Retailer Portal</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .form-section {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-section h3 {
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .download {
+            display: block;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+
+<header>AgriTrust</header>
+
+
+
+<div class="container">
+    <!-- Review Product Section -->
+    <div class="form-section">
+        <h3>Review Product Sample</h3>
+        <button class="download" onclick="viewSample()">Open Product Sample</button>
+        <button class="download" onclick="downloadSample()">Download Product Sample</button>
+    </div>
+
+    <!-- View Quality Checklist Section -->
+    <div class="form-section">
+        <h3>View Quality Checklist</h3>
+        <p><strong>Size:</strong> 10 cm</p>
+        <p><strong>Weight:</strong> 5 kg</p>
+        <p><strong>Color:</strong> Green</p>
+        <p><strong>Condition:</strong> Fresh</p>
+        <p><strong>Ripeness:</strong> Fully Ripe</p>
+        <p><strong>Moisture Content:</strong> 60%</p>
+    </div>
+
+    <!-- Approval and Feedback Section -->
+    <div class="form-section">
+        <h3>Take Action</h3>
+        <button onclick="approveProduct()">Approve</button>
+        <button onclick="rejectProduct()">Reject</button>
+        <div id="feedbackSection" style="display:none;">
+            <h4>Provide Feedback for Rejection:</h4>
+            <textarea id="feedback" rows="4" placeholder="Enter rejection reason..."></textarea>
+            <button onclick="submitFeedback()">Submit Feedback</button>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function viewSample() {
+        alert("Displaying product sample...");
+        // Logic to display product sample
+    }
+
+    function downloadSample() {
+        alert("Downloading product sample...");
+        // Logic to download product sample
+    }
+
+    function approveProduct() {
+        alert("Product approved successfully!");
+    }
+
+    function rejectProduct() {
+        document.getElementById('feedbackSection').style.display = 'block';
+    }
+
+    function submitFeedback() {
+        const feedback = document.getElementById('feedback').value;
+        if (feedback) {
+            alert("Feedback submitted: " + feedback);
+        } else {
+            alert("Please provide feedback.");
+        }
+    }
+</script>
+
+</body>
+</html>
